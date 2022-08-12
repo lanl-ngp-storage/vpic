@@ -259,10 +259,12 @@ species( const char * name,
   sp->q = q;
   sp->m = m;
 
-  MALLOC_ALIGNED( sp->p, max_local_np, 128 );
+  MALLOC_ALIGNED( sp->p,    max_local_np, 128 );
   #ifdef VPIC_GLOBAL_PARTICLE_ID
-  sp->has_ids = 0;    // By default a newly created species will not have IDs.
-  sp->p_id = nullptr; // if we ever dereference this nullptr, I screwed up
+  //sp->has_ids = 0;    // By default a newly created species will not have IDs.
+  //sp->p_id = nullptr; // if we ever dereference this nullptr, I screwed up
+  sp->has_ids = 1;
+  MALLOC_ALIGNED( sp->p_id, max_local_np, 128 );
   #endif
   #ifdef VPIC_PARTICLE_ANNOTATION
   sp->has_annotation = 0;    // By default a newly created species will not have annotation buffers
